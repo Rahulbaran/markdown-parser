@@ -1,0 +1,69 @@
+html {
+  font-size: 100%;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+:root {
+  --base-font-size: 1rem;
+  --base-padding: 0.5rem;
+  --base-margin: 0.5rem;
+
+  --font-stack-lato: "Lato", sans-serif;
+  --base-lh: 1.5;
+
+  --body-bg-color: hsl(0, 100%, 100%);
+  --blue-dark-color: hsl(220, 90%, 15%);
+  --seagreen-color: hsl(150deg, 100%, 40%);
+  --bluegrey-color: hsl(220 30% 20%);
+  --gray-color: hsl(0, 0%, 50%);
+  --gray-300-color: hsl(0, 0%, 80%);
+  --light-gray-color: hsl(0, 0%, 95%);
+  --orange-color: hsl(15deg, 100%, 50%);
+}
+
+body {
+  font: 400 var(--base-font-size) / var(--base-lh) var(--font-stack-lato);
+  background-color: var(--body-bg-color);
+  padding: calc(var(--base-padding) * 4) calc(var(--base-padding) * 2);
+  min-height: 100vh;
+  color: var(--blue-dark-color);
+  letter-spacing: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--bluegrey-color);
+  margin-block: var(--base-margin);
+}
+
+a {
+  color: var(--seagreen-color);
+}
+
+em {
+  color: var(--gray-color);
+}
+
+code {
+  color: var(--orange-color);
+  background-color: var(--light-gray-color);
+  padding: calc(var(--base-padding) * 0.5);
+}
+
+hr {
+  color: var(--gray-300-color);
+  margin-block: var(--base-margin);
+}
