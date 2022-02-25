@@ -1,0 +1,23 @@
+{
+  "name": "markdown-parser",
+  "version": "1.0.0",
+  "description": "- A simple parser for parsing basic markdown syntaxes like headings, link, italic, strike & bold characters, horizontal line and code.",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rahulbaran/markdown-parser.git"
+  },
+  "keywords": [],
+  "author": "Rahul baran",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Rahulbaran/markdown-parser/issues"
+  },
+  "homepage": "https://github.com/Rahulbaran/markdown-parser#readme",
+  "devDependencies": {
+    "chai": "^4.3.6"
+  }
+}

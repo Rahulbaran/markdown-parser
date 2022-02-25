@@ -1,16 +1,6 @@
 "use strict";
 
-// * FUNCTION FOR BOLD REPLACEMENT
-const boldReplacer = (match, p1, p2, p3, p4) => {
-  return match.startsWith("**")
-    ? `<strong>${p2}</strong>`
-    : `<strong>${p4}</strong>`;
-};
-
-// * FUNCTION FOR ITALIC REPLACEMENT
-const italicReplacer = (match, p1, p2, p3, p4) => {
-  return match.startsWith("*") ? `<em>${p2}</em>` : `<em>${p4}</em>`;
-};
+import { parseItalic, parseBold } from "./functions.js";
 
 // * FUNCTION TO PARSE .md FILE
 const parseMd = string => {
@@ -22,9 +12,7 @@ const parseMd = string => {
     /#{5} (.+)/g,
     /#{6} (.+)/g
   ];
-  const [boldReg, italicReg, strikeReg, codeReg, linkReg, horizontalReg] = [
-    /(\*{2}([^\s].+?)\*{2})|(_{2}([^\s].+?)_{2})/g,
-    /(\*([^\s].+?)\*)|(_([^\s].+?)_)/g,
+  const [strikeReg, codeReg, linkReg, horizontalReg] = [
     /~{2}(.+?)~{2}/g,
     /`(.+?)`/g,
     /(\[(.*?)\])(\((.+?)\))/g,
@@ -40,10 +28,10 @@ const parseMd = string => {
   string = string.replace(h1Reg, "<h1>$1</h1>");
 
   // * Bold
-  string = string.replace(boldReg, boldReplacer);
+  string = parseBold(string);
 
   // * Italic
-  string = string.replace(italicReg, italicReplacer);
+  string = parseItalic(string);
 
   // * Strike
   string = string.replace(strikeReg, "<del>$1</del>");
@@ -85,14 +73,3 @@ const fetchMd = file => {
   xhr.onerror = err => console.error(err);
 };
 fetchMd("markdown.md");
-
-// const regex = /(\*([^\s].+?)\*)|(_([^\s].+?)_)/g;
-
-// const boldReplacer = (match, p1, p2, p3, p4) => {
-//   console.log(match, p1, p2, p3, p4);
-//   return match.startsWith("**")
-//     ? `<strong>${p2}</strong>`
-//     : `<strong>${p4}</strong>`;
-// };
-
-// console.log("_Markdown parser_  *markdonw*".replaceAll(regex, boldReplacer));
