@@ -1,6 +1,11 @@
 "use strict";
 
-import { parseItalic, parseBold } from "./functions.js";
+import {
+  parseItalic,
+  parseBold,
+  parseStrike,
+  parseInlineCode
+} from "./functions.js";
 
 // * FUNCTION TO PARSE .md FILE
 const parseMd = string => {
@@ -12,12 +17,7 @@ const parseMd = string => {
     /#{5} (.+)/g,
     /#{6} (.+)/g
   ];
-  const [strikeReg, codeReg, linkReg, horizontalReg] = [
-    /~{2}(.+?)~{2}/g,
-    /`(.+?)`/g,
-    /(\[(.*?)\])(\((.+?)\))/g,
-    /\n(-){3,}/g
-  ];
+  const [linkReg, horizontalReg] = [/(\[(.*?)\])(\((.+?)\))/g, /\n(-){3,}/g];
 
   // * Headings
   string = string.replace(h6Reg, "<h6>$1</h6>");
@@ -34,10 +34,10 @@ const parseMd = string => {
   string = parseItalic(string);
 
   // * Strike
-  string = string.replace(strikeReg, "<del>$1</del>");
+  string = parseStrike(string);
 
   // * Code
-  string = string.replace(codeReg, "<code>$1</code>");
+  string = parseInlineCode(string);
 
   // * Link
   string = string.replace(
